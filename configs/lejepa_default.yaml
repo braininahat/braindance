@@ -1,0 +1,50 @@
+# LeJEPA pretraining configuration for EEG
+
+# Data
+data:
+  dataset: "things-eeg2"
+  data_dir: "data/things-eeg2"
+  num_channels: 63
+  sequence_length: 275
+  sample_rate: 250
+
+# View generation
+views:
+  strategy: "combined_ab"  # trial_repetition | temporal_jitter | channel_subset | combined_ab | combined_abc
+  temporal_jitter_ms: 50
+  channel_subset_size: null  # null = use all channels
+
+# Model
+model:
+  encoder:
+    emb_size: 4
+    conv1_kernel: [1, 5]
+    pool1_kernel: [1, 17]
+    pool1_stride: [1, 5]
+  embedding_dim: 184
+
+# LeJEPA
+lejepa:
+  num_slices: 1024
+  n_points: 17
+  integration_range: [-5, 5]
+  lambda_sigreg: 0.05
+
+# Training
+training:
+  epochs: 400
+  batch_size: 128
+  learning_rate: 5.0e-4
+  weight_decay: 5.0e-4  # for CNN encoder
+  warmup_epochs: 10
+  grad_clip: 1.0
+
+# Infrastructure
+infra:
+  device: "cuda"
+  num_workers: 4
+  seed: 42
+  checkpoint_dir: "checkpoints/lejepa"
+  log_dir: "logs/lejepa"
+  save_every: 50
+  wandb_project: "braindance-lejepa"

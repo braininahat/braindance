@@ -1,0 +1,6 @@
+[submodule "upstream/enigma"]
+	path = upstream/enigma
+	url = https://github.com/Alljoined/ENIGMA.git
+[submodule "upstream/lejepa"]
+	path = upstream/lejepa
+	url = https://github.com/galilai-group/lejepa.git

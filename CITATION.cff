@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+title: "braindance: LeJEPA-EEG Self-Supervised Pretraining for ENIGMA"
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+  - alias: braininahat
+    affiliation: ""
+repository-code: "https://github.com/braininahat/braindance"
+license: MIT
+keywords:
+  - EEG
+  - self-supervised learning
+  - LeJEPA
+  - ENIGMA
+  - brain-computer interface
+  - neural decoding
+references:
+  - type: article
+    title: "ENIGMA: EEG-Driven Image Generation with Multi-modal Alignment"
+    year: 2025
+  - type: article
+    title: "LeJEPA: Learning by Joint Embedding Predictive Architectures"
+    year: 2025

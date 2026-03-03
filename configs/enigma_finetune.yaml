@@ -1,0 +1,57 @@
+# ENIGMA fine-tuning configuration
+
+# Data
+data:
+  dataset: "things-eeg2"
+  data_dir: "data/things-eeg2"
+  num_channels: 63
+  sequence_length: 275
+  sample_rate: 250
+
+# Model
+model:
+  encoder:
+    emb_size: 4
+    conv1_kernel: [1, 5]
+    pool1_kernel: [1, 17]
+    pool1_stride: [1, 5]
+  embedding_dim: 184
+  proj_dim: 1024
+  drop_proj: 0.5
+
+# Pretrained checkpoint (null = train from scratch)
+pretrained_checkpoint: null
+
+# CLIP target
+clip:
+  model_name: "ViT-H-14"
+  pretrained: "laion2b_s32b_b79k"
+
+# Training
+training:
+  epochs: 100
+  batch_size: 1024
+  learning_rate: 3.0e-4
+  weight_decay: 1.0e-4
+  warmup_epochs: 5
+  grad_clip: 1.0
+
+# Loss
+loss:
+  mse_weight: 1.0
+  infonce_weight: 0.5
+
+# Calibration
+calibration:
+  budget_minutes: 15  # 1, 2, 5, 10, 15
+  trials_per_minute: 12  # approximate
+
+# Infrastructure
+infra:
+  device: "cuda"
+  num_workers: 4
+  seed: 42
+  checkpoint_dir: "checkpoints/enigma"
+  log_dir: "logs/enigma"
+  save_every: 10
+  wandb_project: "braindance-enigma"
